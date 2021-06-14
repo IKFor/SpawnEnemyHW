@@ -1,15 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemy;
+    [SerializeField] private float _spawnDelay = 2;
 
-    public void Summon()
+    private SpawnPoint[] _spawnPoints;
+    private int _currentSpawnPoints = 0;
+    private float _timeAfterLastSpawn = 0;
+
+    private void Awake()
     {
-        Instantiate(_enemy, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        _spawnPoints = GetComponentsInChildren<SpawnPoint>();
+    }
+
+    private void Update()
+    {
+        _timeAfterLastSpawn += Time.deltaTime;
+        if (_timeAfterLastSpawn >= _spawnDelay)
+        {
+            _timeAfterLastSpawn = 0;
+            _currentSpawnPoints++;
+
+            if (_currentSpawnPoints >= _spawnPoints.Length)
+                _currentSpawnPoints = 0;
+
+            _spawnPoints[_currentSpawnPoints].Spawn();
+        }
     }
 }

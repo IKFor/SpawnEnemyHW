@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Spawner.cs" />
-    <Compile Include="Assets\Scripts\Spawners.cs" />
+    <Compile Include="Assets\Scripts\SpawnPoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
