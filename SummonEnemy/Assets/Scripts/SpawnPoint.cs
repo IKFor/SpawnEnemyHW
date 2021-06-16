@@ -6,10 +6,10 @@ using UnityEngine.EventSystems;
 
 public class SpawnPoint : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemy;
+    [SerializeField] private GameObject _enemyTemplate;
 
     public void Spawn()
     {
-        Instantiate(_enemy, transform.position, Quaternion.identity);
+        Instantiate(_enemyTemplate, transform.position, Quaternion.identity);
     }
 }
